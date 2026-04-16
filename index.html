@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Casier — Restaurant de la Mer · Paris</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--noir); }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 70%, rgba(46,123,166,0.12) 0%, transparent 60%); }
+.hero-content { text-align: center; position: relative; z-index: 2; padding: 0 20px; }
+.hero-eyebrow { font-size: 9px; letter-spacing: 6px; color: var(--bleu-clair); text-transform: uppercase; margin-bottom: 32px; opacity: 0; animation: fadeUp 1s 0.3s ease forwards; }
+.hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(64px, 11vw, 140px); font-weight: 300; line-height: 0.9; color: #fff; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s 0.5s ease forwards; }
+.hero-title em { font-style: italic; color: var(--bleu-pale); }
+.hero-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--bleu), transparent); margin: 0 auto 28px; opacity: 0; animation: fadeUp 1s 0.7s ease forwards; }
+.hero-sub { font-size: 11px; letter-spacing: 5px; color: var(--texte-doux); text-transform: uppercase; margin-bottom: 56px; opacity: 0; animation: fadeUp 1s 0.9s ease forwards; }
+.hero-cta { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s 1.1s ease forwards; }
+.hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--texte-doux); font-size: 9px; letter-spacing: 4px; text-transform: uppercase; opacity: 0; animation: fadeUp 1s 1.5s ease forwards; }
+.scroll-bar { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--bleu), transparent); animation: scrollAnim 2s ease-in-out infinite; }
+@keyframes scrollAnim { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+/* HIGHLIGHTS */
+.highlights { background: var(--nuit); padding: 100px 80px; }
+.highlights-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; }
+.highlight-card { background: var(--profond); border: 1px solid rgba(255,255,255,0.04); padding: 48px 36px; text-align: center; transition: all 0.3s; position: relative; overflow: hidden; }
+.highlight-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--bleu), transparent); transform: scaleX(0); transition: transform 0.4s; }
+.highlight-card:hover { background: rgba(46,123,166,0.05); }
+.highlight-card:hover::after { transform: scaleX(1); }
+.highlight-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+.highlight-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #fff; margin-bottom: 12px; }
+.highlight-text { font-size: 12px; color: var(--texte-doux); line-height: 1.8; margin-bottom: 20px; }
+.highlight-link { font-size: 9px; letter-spacing: 3px; color: var(--bleu-clair); text-decoration: none; text-transform: uppercase; border-bottom: 1px solid rgba(74,175,212,0.3); padding-bottom: 2px; transition: border-color 0.3s; }
+.highlight-link:hover { border-color: var(--bleu-clair); }
+
+/* EXPERIENCE */
+.experience { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.experience-visual { background: linear-gradient(135deg, var(--profond), var(--brume)); display: flex; align-items: center; justify-content: center; font-size: 100px; position: relative; }
+.experience-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--nuit)); }
+.experience-text { background: var(--nuit); padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
+.experience-text .section-intro { max-width: 100%; margin-bottom: 40px; }
+.stars { color: var(--bleu-clair); font-size: 24px; letter-spacing: 4px; margin-bottom: 20px; }
+
+/* SIGNATURES */
+.signatures { background: var(--profond); padding: 100px 80px; }
+.sign-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; }
+.sign-card { border: 1px solid rgba(46,123,166,0.15); padding: 40px; position: relative; }
+.sign-card.featured { background: rgba(46,123,166,0.05); border-color: rgba(46,123,166,0.3); }
+.sign-badge { position: absolute; top: -12px; left: 32px; background: var(--bleu); color: #fff; font-size: 8px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 4px 14px; }
+.sign-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #fff; margin-bottom: 8px; }
+.sign-desc { font-size: 11px; color: var(--texte-doux); line-height: 1.8; margin-bottom: 24px; }
+.sign-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--bleu-clair); margin-bottom: 4px; }
+.sign-detail { font-size: 10px; color: var(--texte-doux); letter-spacing: 2px; }
+
+/* SECTION POISSON STICKY */
+.section-poisson { min-height: 200vh; position: relative; }
+.sticky-container { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--noir); }
+.poisson-wrapper { position: relative; display: flex; align-items: center; justify-content: center; gap: 60px; }
+.glow-poisson { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(46,123,166,0.1) 0%, transparent 65%); border-radius: 50%; pointer-events: none; animation: glowPulse 3s ease-in-out infinite; }
+@keyframes glowPulse { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
+.ring-poisson { position: absolute; border-radius: 50%; border: 1px solid rgba(46,123,166,0.07); pointer-events: none; animation: ringRotate 25s linear infinite; }
+@keyframes ringRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.poisson-info-left, .poisson-info-right { max-width: 200px; opacity: 0; }
+.poisson-info-left { text-align: right; }
+.poisson-tag { font-size: 9px; letter-spacing: 4px; color: var(--bleu-clair); text-transform: uppercase; margin-bottom: 12px; }
+.poisson-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: #fff; margin-bottom: 12px; line-height: 1.1; }
+.poisson-desc { font-size: 11px; color: var(--texte-doux); line-height: 1.9; }
+.poisson-line { width: 36px; height: 1px; background: var(--bleu); margin: 16px 0; }
+.poisson-line-right { width: 36px; height: 1px; background: var(--bleu); margin: 16px 0 16px auto; }
+@media(max-width:768px) { #poisson-img { width: 300px !important; height: 300px !important; } .poisson-info-left, .poisson-info-right { display: none; } }
+
+/* STATS */
+.stats { display: grid; grid-template-columns: repeat(4,1fr); background: var(--nuit); }
+.stat { padding: 60px 40px; text-align: center; border-right: 1px solid rgba(46,123,166,0.1); }
+.stat:last-child { border-right: none; }
+.stat-number { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: #fff; line-height: 1; }
+.stat-unit { font-size: 9px; letter-spacing: 3px; color: var(--bleu-clair); text-transform: uppercase; display: block; margin-top: 4px; }
+.stat-label { font-size: 11px; color: var(--texte-doux); margin-top: 8px; }
+
+@media(max-width:768px) {
+  .highlights-grid, .sign-grid { grid-template-columns: 1fr; }
+  .experience { grid-template-columns: 1fr; }
+  .experience-visual { min-height: 300px; }
+  .experience-visual::after { background: linear-gradient(to top, var(--nuit), transparent); }
+  .stats { grid-template-columns: repeat(2,1fr); }
+  .highlights { padding: 60px 24px; }
+  .signatures { padding: 60px 24px; }
+  .experience-text { padding: 60px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+
+<!-- NAV -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="chef.html">Le Chef</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="waveCanvas"></canvas>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Poissonnerie · Restaurant · Paris</p>
+    <h1 class="hero-title">Le <em>Casier</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">La mer sur votre table · Chaque matin, la marée</p>
+    <div class="hero-cta">
+      <a href="reservation.html" class="btn-blue">Réserver une table</a>
+      <a href="menu.html" class="btn-ghost">Découvrir la carte</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descendre</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal"><span class="stat-number">7</span><span class="stat-unit">Jours sur 7</span><p class="stat-label">Arrivages directs</p></div>
+  <div class="stat reveal"><span class="stat-number">12</span><span class="stat-unit">Espèces</span><p class="stat-label">En moyenne par service</p></div>
+  <div class="stat reveal"><span class="stat-number">3h</span><span class="stat-unit">De Bretagne</span><p class="stat-label">Port de Roscoff à Paris</p></div>
+  <div class="stat reveal"><span class="stat-number">18</span><span class="stat-unit">Ans d'expérience</span><p class="stat-label">Du chef de cuisine</p></div>
+</div>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights">
+  <div style="text-align:center; max-width:600px; margin:0 auto;">
+    <p class="section-eyebrow reveal">L'esprit du lieu</p>
+    <h2 class="section-title reveal">L'océan, <em>sans filtre</em></h2>
+    <div class="blue-line reveal"></div>
+    <p class="section-intro reveal" style="margin:0 auto;">Ici, pas de congélateur. Chaque matin, nos pêcheurs nous livrent ce que la mer a donné. Vous mangez ce qui existe, là, maintenant.</p>
+  </div>
+  <div class="highlights-grid" style="margin-top:64px;">
+    <div class="highlight-card reveal">
+      <span class="highlight-icon">🦞</span>
+      <h3 class="highlight-title">Viviers en salle</h3>
+      <p class="highlight-text">Homards, tourteaux, langoustines — vous choisissez votre pièce vivante avant qu'elle ne rejoigne votre assiette.</p>
+      <a href="menu.html" class="highlight-link">Voir la carte</a>
+    </div>
+    <div class="highlight-card reveal">
+      <span class="highlight-icon">🚢</span>
+      <h3 class="highlight-title">Arrivage du matin</h3>
+      <p class="highlight-text">Port de Roscoff, Dieppe, Saint-Jean-de-Luz. Notre menu du jour reflète ce que la marée a donné — chaque service est unique.</p>
+      <a href="menu.html" class="highlight-link">Menu du jour</a>
+    </div>
+    <div class="highlight-card reveal">
+      <span class="highlight-icon">🍷</span>
+      <h3 class="highlight-title">Cave iodée</h3>
+      <p class="highlight-text">Muscadet, Sancerre, Picpoul de Pinet — notre sommelier sélectionne des vins blancs d'exception pour sublimer chaque poisson.</p>
+      <a href="menu.html" class="highlight-link">La carte des vins</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div class="experience">
+  <div class="experience-visual">
+    <span style="position:relative;z-index:2;">🐟</span>
+  </div>
+  <div class="experience-text">
+    <div class="section-intro">
+      <p class="section-eyebrow reveal">Le Chef</p>
+      <h2 class="section-title reveal">Thomas <em>Mével</em></h2>
+      <div class="blue-line reveal"></div>
+      <div class="stars reveal">★ ★ ★ ★ ★</div>
+      <p class="reveal">Breton d'origine, Thomas Mével a grandi sur les quais de Douarnenez avant de traverser les brigades parisiennes les plus exigeantes. Sa cuisine ne triche pas : le produit est roi, la cuisson est juste, et la mer parle d'elle-même.</p>
+    </div>
+    <a href="chef.html" class="btn-ghost reveal" style="width:fit-content;margin-top:12px;">Son parcours</a>
+  </div>
+</div>
+
+<!-- PLAT SIGNATURE STICKY -->
+<section class="section-poisson">
+  <div class="sticky-container">
+    <div class="poisson-wrapper">
+      <div class="glow-poisson"></div>
+      <div class="ring-poisson" id="ring1" style="width:420px;height:420px;"></div>
+      <div class="ring-poisson" id="ring2" style="width:320px;height:320px;animation-direction:reverse;animation-duration:18s;"></div>
+      <div class="poisson-info-left" id="poissonLeft">
+        <p class="poisson-tag">Plat signature</p>
+        <div class="poisson-line-right"></div>
+        <h3 class="poisson-name">Bar de ligne,<br>beurre blanc<br>au citron vert</h3>
+        <p class="poisson-desc">Pêché à la ligne<br>en Atlantique Nord</p>
+      </div>
+      <div style="position:relative;z-index:2;width:320px;height:320px;border-radius:50%;background:var(--profond);border:1px solid rgba(46,123,166,0.2);display:flex;align-items:center;justify-content:center;font-size:120px;">
+        🐠
+      </div>
+      <div class="poisson-info-right" id="poissonRight">
+        <p class="poisson-tag">Accompagnement</p>
+        <div class="poisson-line"></div>
+        <h3 class="poisson-name">Risotto<br>à l'encre<br>de seiche</h3>
+        <p class="poisson-desc">Parmesan 24 mois<br>huile d'olive Crète</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURES / MENUS -->
+<section class="signatures">
+  <div style="text-align:center;max-width:600px;margin:0 auto 0;">
+    <p class="section-eyebrow reveal">Nos formules</p>
+    <h2 class="section-title reveal">La table, <em>comme vous voulez</em></h2>
+    <div class="blue-line reveal"></div>
+  </div>
+  <div class="sign-grid" style="margin-top:64px;">
+    <div class="sign-card reveal">
+      <p class="sign-name">Déjeuner du pêcheur</p>
+      <p class="sign-desc">Entrée · Plat du jour · Café<br>Ardoise selon l'arrivage du matin</p>
+      <p class="sign-price">32 €</p>
+      <p class="sign-detail">Du lundi au vendredi · midi</p>
+    </div>
+    <div class="sign-card featured reveal">
+      <div class="sign-badge">Signature</div>
+      <p class="sign-name">L'Expérience Casier</p>
+      <p class="sign-desc">6 services · Viviers · Accord mets-vins<br>Dégustation du meilleur de la marée</p>
+      <p class="sign-price">98 €</p>
+      <p class="sign-detail">Dîner · Réservation conseillée</p>
+    </div>
+    <div class="sign-card reveal">
+      <p class="sign-name">À la carte</p>
+      <p class="sign-desc">Homard, turbot, saint-pierre, sole...<br>Cuisson au choix · vivier en salle</p>
+      <p class="sign-price">Selon marché</p>
+      <p class="sign-detail">Déjeuner & dîner</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section" style="background:var(--nuit);text-align:center;">
+  <p class="section-eyebrow reveal">Une table ?</p>
+  <h2 class="section-title reveal">Réservez votre <em>moment</em></h2>
+  <div class="blue-line reveal"></div>
+  <p class="section-intro reveal" style="margin:0 auto 48px;">Le Casier accueille jusqu'à 40 couverts par service. Les tables en vivier sont disponibles sur réservation uniquement.</p>
+  <a href="reservation.html" class="btn-blue reveal">Réserver en ligne</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div>
+      <div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div>
+      <p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p>
+    </div>
+    <div class="footer-links">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="menu.html">Carte & Vins</a></li>
+        <li><a href="chef.html">Le Chef</a></li>
+        <li><a href="evenements.html">Événements</a></li>
+        <li><a href="presse.html">Presse & Avis</a></li>
+        <li><a href="reservation.html">Réservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Informations</h4>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Confidentialité</a></li>
+        <li><a href="#">Bon cadeau</a></li>
+        <li><a href="#">Recrutement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Le Casier · Tous droits réservés</p>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">TripAdvisor</a>
+    </div>
+  </div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+<script>
+// Animation sticky poisson
+const poissonSection = document.querySelector('.section-poisson');
+const leftInfo  = document.getElementById('poissonLeft');
+const rightInfo = document.getElementById('poissonRight');
+if (poissonSection) {
+  window.addEventListener('scroll', () => {
+    const rect = poissonSection.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, (-rect.top) / (rect.height - window.innerHeight)));
+    if (progress > 0.2) { leftInfo.style.opacity = Math.min(1,(progress-0.2)/0.3); leftInfo.style.transform = `translateX(${(1-(progress-0.2)/0.3)*-30}px)`; }
+    if (progress > 0.4) { rightInfo.style.opacity = Math.min(1,(progress-0.4)/0.3); rightInfo.style.transform = `translateX(${(1-(progress-0.4)/0.3)*30}px)`; }
+  });
+}
+</script>
+</body>
+</html>

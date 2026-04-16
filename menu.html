@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte — Le Casier</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.menu-header { background: var(--nuit); padding: 160px 80px 80px; text-align: center; }
+.menu-tabs { display: flex; justify-content: center; gap: 2px; margin-top: 48px; flex-wrap: wrap; }
+.menu-tab { background: var(--profond); border: 1px solid rgba(46,123,166,0.15); color: var(--texte-doux); padding: 12px 28px; font-family: 'Montserrat',sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; cursor: none; transition: all 0.3s; }
+.menu-tab.active, .menu-tab:hover { background: var(--bleu); color: #fff; border-color: var(--bleu); }
+.menu-body { padding: 0 80px 80px; }
+.menu-cat { display: none; }
+.menu-cat.active { display: block; }
+.day-banner { background: var(--profond); border-left: 3px solid var(--bleu); padding: 24px 32px; margin: 48px 0 32px; }
+.day-banner-title { font-family:'Cormorant Garamond',serif; font-size:28px; color:#fff; margin-bottom:4px; }
+.day-banner-sub { font-size:11px; color:var(--texte-doux); letter-spacing:2px; }
+@media(max-width:768px) { .menu-header { padding: 120px 24px 60px; } .menu-body { padding: 0 24px 60px; } }
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html" class="active">Carte</a></li>
+    <li><a href="chef.html">Le Chef</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<div class="menu-header">
+  <p class="page-eyebrow reveal">La Carte</p>
+  <h1 class="page-title reveal">Ce que la <em>mer offre</em></h1>
+  <div class="blue-line reveal"></div>
+  <p class="section-intro reveal" style="margin:0 auto;max-width:500px;">Notre carte évolue chaque matin selon les arrivages. Les prix des pièces entières (homard, turbot) sont indiqués au poids.</p>
+  <div class="menu-tabs" style="margin-top:40px;">
+    <button class="menu-tab active" onclick="switchTab('ardoise')">Ardoise du jour</button>
+    <button class="menu-tab" onclick="switchTab('entrees')">Entrées</button>
+    <button class="menu-tab" onclick="switchTab('poissons')">Poissons</button>
+    <button class="menu-tab" onclick="switchTab('viviers')">Viviers</button>
+    <button class="menu-tab" onclick="switchTab('desserts')">Desserts</button>
+    <button class="menu-tab" onclick="switchTab('vins')">Vins</button>
+  </div>
+</div>
+
+<div class="menu-body">
+
+  <!-- ARDOISE DU JOUR -->
+  <div class="menu-cat active" id="cat-ardoise">
+    <div class="day-banner reveal">
+      <p class="day-banner-title">Arrivage de ce matin</p>
+      <p class="day-banner-sub">Port de Roscoff · Bretagne · Fraîcheur garantie</p>
+    </div>
+    <div class="menu-section" style="padding:0;">
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Formule déjeuner</p><h3 class="menu-item-name">Entrée · Plat du jour · Café</h3><p class="menu-item-desc">Soupe de poisson maison, rouille et croûtons · Bar vapeur, légumes de saison · Café ou thé</p></div><span class="menu-item-price">32 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Plat du jour</p><h3 class="menu-item-name">Saint-Pierre rôti, sauce vierge</h3><p class="menu-item-desc">Tomates cerises, basilic, huile d'olive · Purée de céleri</p></div><span class="menu-item-price">34 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Suggestion</p><h3 class="menu-item-name">Sole meunière, beurre noisette</h3><p class="menu-item-desc">Haricots verts extra-fins · Pommes vapeur persillées</p></div><span class="menu-item-price">42 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRÉES -->
+  <div class="menu-cat" id="cat-entrees">
+    <div class="menu-section" style="padding:48px 0 0;">
+      <h2 class="menu-section-title reveal">Entrées <em>froides</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Huîtres de Cancale n°3</h3><p class="menu-item-desc">Échalote-vinaigre, citron, pain de seigle</p></div><span class="menu-item-price">6 p. — 18 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Tartare de thon rouge</h3><p class="menu-item-desc">Avocat, mangue, gingembre, sésame grillé</p></div><span class="menu-item-price">22 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Ceviche de daurade</h3><p class="menu-item-desc">Lait de coco, citron vert, coriandre, piment doux</p></div><span class="menu-item-price">19 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Plateau de fruits de mer</h3><p class="menu-item-desc">Huîtres, crevettes grises, bulots, langoustines · 2 pers.</p></div><span class="menu-item-price">68 €</span></div>
+      </div>
+      <h2 class="menu-section-title reveal" style="margin-top:56px;">Entrées <em>chaudes</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Soupe de poisson maison</h3><p class="menu-item-desc">Rouille safranée, gruyère râpé, croûtons dorés</p></div><span class="menu-item-price">16 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Saint-Jacques poêlées</h3><p class="menu-item-desc">Crème de butternut, noisettes torréfiées, huile de truffe</p></div><span class="menu-item-price">28 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Bisque de homard</h3><p class="menu-item-desc">Quenelle de crème fraîche, cerfeuil, caviar d'Aquitaine</p></div><span class="menu-item-price">24 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POISSONS -->
+  <div class="menu-cat" id="cat-poissons">
+    <div class="menu-section" style="padding:48px 0 0;">
+      <h2 class="menu-section-title reveal">Poissons <em>nobles</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Bar de ligne</h3><p class="menu-item-desc">Beurre blanc au citron vert · Risotto à l'encre de seiche</p></div><span class="menu-item-price">46 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Turbot entier</h3><p class="menu-item-desc">Beurre mousseux aux câpres · Légumes racines rôtis · 2 pers.</p></div><span class="menu-item-price">Prix marché</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Sole de Manche</h3><p class="menu-item-desc">Meunière classique ou grenobloise · Purée maison</p></div><span class="menu-item-price">44 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Saint-Pierre</h3><p class="menu-item-desc">Jus de vongole, fenouil braisé, condiment citron confit</p></div><span class="menu-item-price">38 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Dos de cabillaud</h3><p class="menu-item-desc">Chorizo ibérique, pois chiches à l'espagnole, piment d'Espelette</p></div><span class="menu-item-price">34 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Daurade royale</h3><p class="menu-item-desc">Croûte d'herbes, ratatouille niçoise, pistou maison</p></div><span class="menu-item-price">36 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIVIERS -->
+  <div class="menu-cat" id="cat-viviers">
+    <div class="menu-section" style="padding:48px 0 0;">
+      <div class="day-banner reveal">
+        <p class="day-banner-title">Viviers en salle</p>
+        <p class="day-banner-sub">Vous choisissez votre pièce · Prix au poids du jour</p>
+      </div>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Homard breton</h3><p class="menu-item-desc">Grillé, thermidor, à la nage ou poché · Min. 600g</p></div><span class="menu-item-price">85 €/kg</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Tourteau</h3><p class="menu-item-desc">Mayo maison, mayonnaise à l'estragon · Pain de campagne</p></div><span class="menu-item-price">38 €/kg</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Langoustines vivantes</h3><p class="menu-item-desc">Flambées au whisky ou grillées au beurre d'herbes · 6 pièces</p></div><span class="menu-item-price">42 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Araignée de mer</h3><p class="menu-item-desc">Servie froide avec sa farce coraillée · 1 pièce</p></div><span class="menu-item-price">34 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESSERTS -->
+  <div class="menu-cat" id="cat-desserts">
+    <div class="menu-section" style="padding:48px 0 0;">
+      <h2 class="menu-section-title reveal">Desserts <em>du pâtissier</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Tarte au citron meringuée</h3><p class="menu-item-desc">Pâte sablée, crème citron jaune-vert, meringue italienne</p></div><span class="menu-item-price">12 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Île flottante à la vanille</h3><p class="menu-item-desc">Crème anglaise, caramel au beurre salé breton</p></div><span class="menu-item-price">10 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Sorbet fruit de mer</h3><p class="menu-item-desc">Sorbet citron-basilic, granité d'eau de mer cristallisée</p></div><span class="menu-item-price">8 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Fondant au chocolat</h3><p class="menu-item-desc">Cœur coulant, fleur de sel de Guérande, glace vanille Bourbon</p></div><span class="menu-item-price">13 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Assiette de fromages</h3><p class="menu-item-desc">Sélection affineur, pain aux noix, confiture de figues</p></div><span class="menu-item-price">16 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VINS -->
+  <div class="menu-cat" id="cat-vins">
+    <div class="menu-section" style="padding:48px 0 0;">
+      <h2 class="menu-section-title reveal">Blancs <em>iodés</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Loire</p><h3 class="menu-item-name">Muscadet Sèvre & Maine sur Lie</h3><p class="menu-item-desc">Domaine de la Pépière — minéral, salin, idéal fruits de mer</p></div><span class="menu-item-price">38 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Languedoc</p><h3 class="menu-item-name">Picpoul de Pinet</h3><p class="menu-item-desc">Château Saint-Martin de la Garrigue — vif, agrumes, iodé</p></div><span class="menu-item-price">42 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Bourgogne</p><h3 class="menu-item-name">Chablis Premier Cru Montée de Tonnerre</h3><p class="menu-item-desc">Domaine Raveneau — minéralité absolue, grande finesse</p></div><span class="menu-item-price">95 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><p class="menu-item-tag">Loire</p><h3 class="menu-item-name">Sancerre Blanc</h3><p class="menu-item-desc">Henri Bourgeois — sauvignon pur, notes fumées, tension</p></div><span class="menu-item-price">68 €</span></div>
+      </div>
+      <h2 class="menu-section-title reveal" style="margin-top:56px;">Champagnes <em>& Bulles</em></h2>
+      <div class="menu-items">
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Ruinart Blanc de Blancs</h3><p class="menu-item-desc">Fraîcheur, pureté, accord parfait huîtres et langoustines</p></div><span class="menu-item-price">95 €</span></div>
+        <div class="menu-item reveal"><div class="menu-item-left"><h3 class="menu-item-name">Coupe de champagne</h3><p class="menu-item-desc">Sélection du sommelier · à la coupe</p></div><span class="menu-item-price">18 €</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div>
+      <div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div>
+      <p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p>
+    </div>
+    <div class="footer-links"><h4>Pages</h4><ul>
+      <li><a href="index.html">Accueil</a></li><li><a href="menu.html">Carte & Vins</a></li>
+      <li><a href="chef.html">Le Chef</a></li><li><a href="reservation.html">Réservation</a></li>
+    </ul></div>
+    <div class="footer-links"><h4>Informations</h4><ul>
+      <li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Le Casier · Tous droits réservés</p><div class="footer-social"><a href="#">Instagram</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.menu-cat').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('cat-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

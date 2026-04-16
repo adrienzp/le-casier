@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presse & Avis — Le Casier</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.press-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; }
+.press-card { background: var(--profond); border: 1px solid rgba(46,123,166,0.12); padding: 48px 40px; }
+.press-source { font-size: 9px; letter-spacing: 4px; color: var(--bleu-clair); text-transform: uppercase; margin-bottom: 20px; }
+.press-quote { font-family:'Cormorant Garamond',serif; font-size:22px; color:#fff; font-style:italic; line-height:1.5; margin-bottom:20px; }
+.press-quote::before { content:'«\00a0'; }
+.press-quote::after  { content:'\00a0»'; }
+.press-meta { font-size:11px; color:var(--texte-doux); }
+.avis-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
+.avis-card { background: var(--profond); border: 1px solid rgba(46,123,166,0.1); padding: 32px; }
+.avis-stars { color: var(--bleu-clair); font-size:16px; margin-bottom:12px; }
+.avis-text { font-size:13px; color:var(--texte-doux); line-height:1.9; font-style:italic; margin-bottom:16px; }
+.avis-author { font-size:11px; color:#fff; font-weight:500; }
+.avis-date { font-size:10px; color:var(--texte-doux); }
+@media(max-width:768px) { .press-grid, .avis-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="chef.html">Le Chef</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html" class="active">Presse</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-eyebrow reveal">Presse & Avis</p>
+    <h1 class="page-title reveal">Ce qu'on <em>dit de nous</em></h1>
+    <div class="blue-line reveal"></div>
+    <p class="page-subtitle reveal">Presse spécialisée · Clients · Critiques gastronomiques</p>
+  </div>
+</section>
+
+<section class="section" style="background:var(--nuit);">
+  <p class="section-eyebrow reveal">La presse en parle</p>
+  <h2 class="section-title reveal">Revue de <em>presse</em></h2>
+  <div class="press-grid">
+    <div class="press-card reveal">
+      <p class="press-source">Le Figaro · Gastronomie</p>
+      <p class="press-quote">Thomas Mével signe la meilleure table poisson de Paris. Un naturel désarmant, une technique sans faille.</p>
+      <p class="press-meta">Marie Dupont — Janvier 2026</p>
+    </div>
+    <div class="press-card reveal">
+      <p class="press-source">GaultMillau · 16/20</p>
+      <p class="press-quote">Le Casier s'impose comme une évidence. Ici, la mer n'est pas un prétexte — c'est une obsession partagée.</p>
+      <p class="press-meta">Guide GaultMillau 2026</p>
+    </div>
+    <div class="press-card reveal">
+      <p class="press-source">Le Monde · M Magazine</p>
+      <p class="press-quote">La salle avec vivier est une expérience en soi. Vous choisissez, il cuisine. C'est simple, c'est radical, c'est parfait.</p>
+      <p class="press-meta">Jean Moreau — Février 2026</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--noir);">
+  <p class="section-eyebrow reveal">Avis clients</p>
+  <h2 class="section-title reveal">Ce qu'ils <em>retiennent</em></h2>
+  <div class="avis-grid">
+    <div class="avis-card reveal">
+      <p class="avis-stars">★★★★★</p>
+      <p class="avis-text">Le homard que j'ai choisi dans le vivier, cuit à la perfection 20 minutes plus tard. Une expérience que je n'avais jamais vécue à Paris. On reviendra sans hésiter.</p>
+      <p class="avis-author">Sophie L. <span class="avis-date">— Mars 2026 · TripAdvisor</span></p>
+    </div>
+    <div class="avis-card reveal">
+      <p class="avis-stars">★★★★★</p>
+      <p class="avis-text">Le bar de ligne était d'une fraîcheur absolue. Le beurre blanc au citron vert, une révélation. Et le sommelier qui nous a guidés vers ce Chablis... service exceptionnel.</p>
+      <p class="avis-author">Maxime B. <span class="avis-date">— Février 2026 · Google</span></p>
+    </div>
+    <div class="avis-card reveal">
+      <p class="avis-stars">★★★★★</p>
+      <p class="avis-text">Dîner d'anniversaire parfait. Thomas Mével est passé à notre table, a proposé un accord mets-vins personnalisé. Ce niveau d'attention est rare. Bravo.</p>
+      <p class="avis-author">Claire M. <span class="avis-date">— Janvier 2026 · TripAdvisor</span></p>
+    </div>
+    <div class="avis-card reveal">
+      <p class="avis-stars">★★★★☆</p>
+      <p class="avis-text">La formule déjeuner à 32€ est un rapport qualité-prix imbattable à Paris. Soupe de poisson maison, saint-pierre du jour... c'est honnête, généreux, délicieux.</p>
+      <p class="avis-author">Antoine P. <span class="avis-date">— Avril 2026 · Google</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--nuit);text-align:center;">
+  <p class="section-eyebrow reveal">Presse &amp; Partenariats</p>
+  <h2 class="section-title reveal">Demandes <em>médias</em></h2>
+  <div class="blue-line reveal"></div>
+  <p class="section-intro reveal" style="margin:0 auto 48px;">Pour tout contact presse, demande d'interview ou visite de table, écrivez-nous directement.</p>
+  <a href="contact.html" class="btn-ghost reveal">Contacter l'attachée de presse</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div><div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div><p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p></div>
+    <div class="footer-links"><h4>Pages</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Carte</a></li><li><a href="reservation.html">Réservation</a></li></ul></div>
+    <div class="footer-links"><h4>Infos</h4><ul><li><a href="#">Mentions légales</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Le Casier · Tous droits réservés</p><div class="footer-social"><a href="#">Instagram</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Événements — Le Casier</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.events-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin-top: 64px; }
+.event-card { background: var(--profond); border: 1px solid rgba(46,123,166,0.12); padding: 56px 48px; transition: all 0.3s; position: relative; overflow: hidden; }
+.event-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, transparent, var(--bleu), transparent); transform: scaleX(0); transition: transform 0.4s; }
+.event-card:hover { background: rgba(46,123,166,0.04); }
+.event-card:hover::after { transform: scaleX(1); }
+.event-icon { font-size: 48px; margin-bottom: 24px; }
+.event-title { font-family:'Cormorant Garamond',serif; font-size:32px; color:#fff; margin-bottom:16px; font-weight:300; }
+.event-title em { color:var(--bleu-pale); font-style:italic; }
+.event-desc { font-size:13px; color:var(--texte-doux); line-height:2; margin-bottom:28px; font-weight:300; }
+.event-detail { font-size:10px; letter-spacing:2px; color:var(--bleu-clair); text-transform:uppercase; }
+@media(max-width:768px) { .events-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="chef.html">Le Chef</a></li>
+    <li><a href="evenements.html" class="active">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <p class="page-eyebrow reveal">Événements</p>
+    <h1 class="page-title reveal">Vivez <em>l'expérience</em></h1>
+    <div class="blue-line reveal"></div>
+    <p class="page-subtitle reveal">Privatisation · Dîners thématiques · Cours de cuisine</p>
+  </div>
+</section>
+
+<section class="section" style="background:var(--nuit);">
+  <p class="section-eyebrow reveal">Ce que nous proposons</p>
+  <h2 class="section-title reveal">La mer, <em>partagée</em></h2>
+  <div class="events-grid">
+    <div class="event-card reveal">
+      <div class="event-icon">🦞</div>
+      <h3 class="event-title">Soirée <em>Viviers</em></h3>
+      <p class="event-desc">Une soirée dédiée aux crustacés vivants. Homards, tourteaux, langoustines — vous choisissez en salle, le chef prépare devant vous. Accord champagne et Chablis inclus.</p>
+      <p class="event-detail">Vendredi soir · Sur réservation · 12 pers. max</p>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-icon">👨‍🍳</div>
+      <h3 class="event-title">Cours de <em>cuisine</em></h3>
+      <p class="event-desc">Thomas Mével vous initie à la levée de filets, à la cuisson parfaite du poisson et à la fabrication d'un beurre blanc. 3 heures en cuisine, repas inclus.</p>
+      <p class="event-detail">Samedi matin · 9h – 12h · 8 pers. max · 120 €/pers.</p>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-icon">🥂</div>
+      <h3 class="event-title">Privatisation <em>complète</em></h3>
+      <p class="event-desc">Le Casier privatisé pour votre événement professionnel ou privé. Menu sur-mesure, accord mets-vins, service dédié. Jusqu'à 40 couverts.</p>
+      <p class="event-detail">Sur demande · Devis personnalisé</p>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-icon">🌊</div>
+      <h3 class="event-title">Dîner <em>Arrivage</em></h3>
+      <p class="event-desc">Un dîner surprise, entièrement construit autour de l'arrivage du jour. Menu inconnu à l'avance, 6 services, accord vins. L'expérience ultime de la mer.</p>
+      <p class="event-detail">Premier jeudi du mois · 19h30 · 20 pers. · 110 €/pers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--noir);text-align:center;">
+  <p class="section-eyebrow reveal">Organiser un événement</p>
+  <h2 class="section-title reveal">Parlez-<em>nous</em> de votre projet</h2>
+  <div class="blue-line reveal"></div>
+  <p class="section-intro reveal" style="margin:0 auto 48px;">Pour toute demande de privatisation ou événement sur-mesure, notre équipe vous répond sous 48h avec un devis personnalisé.</p>
+  <a href="contact.html" class="btn-blue reveal">Nous contacter</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div><div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div><p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p></div>
+    <div class="footer-links"><h4>Pages</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Carte</a></li><li><a href="reservation.html">Réservation</a></li></ul></div>
+    <div class="footer-links"><h4>Infos</h4><ul><li><a href="#">Mentions légales</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Le Casier · Tous droits réservés</p><div class="footer-social"><a href="#">Instagram</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Le Casier</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; }
+.contact-info { background: var(--nuit); padding: 160px 80px 80px; }
+.contact-form-wrap { background: var(--profond); padding: 160px 80px 80px; }
+.contact-item { display: flex; gap: 20px; margin-bottom: 40px; align-items: flex-start; }
+.contact-icon { font-size: 24px; margin-top: 4px; }
+.contact-label { font-size: 9px; letter-spacing: 3px; color: var(--bleu-clair); text-transform: uppercase; margin-bottom: 8px; }
+.contact-value { font-size: 14px; color: #fff; line-height: 1.8; }
+.contact-value a { color: var(--texte-doux); text-decoration: none; transition: color 0.3s; }
+.contact-value a:hover { color: var(--bleu-clair); }
+.horaires-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 12px; }
+.horaire-day { font-size: 11px; color: var(--texte-doux); }
+.horaire-hours { font-size: 11px; color: #fff; text-align: right; }
+@media(max-width:768px) { .contact-layout { grid-template-columns:1fr; } .contact-info, .contact-form-wrap { padding: 80px 24px 60px; } }
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="chef.html">Le Chef</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<div class="contact-layout">
+  <div class="contact-info">
+    <p class="page-eyebrow reveal">Contact</p>
+    <h1 class="page-title reveal">Nous <em>trouver</em></h1>
+    <div class="blue-line reveal"></div>
+
+    <div class="contact-item reveal">
+      <span class="contact-icon">📍</span>
+      <div>
+        <p class="contact-label">Adresse</p>
+        <p class="contact-value">18 Rue des Grands Augustins<br>75006 Paris, France<br>Métro Odéon — Lignes 4 & 10</p>
+      </div>
+    </div>
+    <div class="contact-item reveal">
+      <span class="contact-icon">📞</span>
+      <div>
+        <p class="contact-label">Téléphone</p>
+        <p class="contact-value"><a href="tel:+33143000000">+33 1 43 00 00 00</a></p>
+      </div>
+    </div>
+    <div class="contact-item reveal">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <p class="contact-label">Email</p>
+        <p class="contact-value"><a href="mailto:contact@lecasier.fr">contact@lecasier.fr</a></p>
+      </div>
+    </div>
+    <div class="contact-item reveal">
+      <span class="contact-icon">🕐</span>
+      <div>
+        <p class="contact-label">Horaires d'ouverture</p>
+        <div class="horaires-grid">
+          <span class="horaire-day">Mardi – Vendredi</span><span class="horaire-hours">12h – 14h30 · 19h – 22h30</span>
+          <span class="horaire-day">Samedi</span><span class="horaire-hours">12h – 15h00 · 19h – 23h00</span>
+          <span class="horaire-day">Dimanche</span><span class="horaire-hours">12h – 15h00</span>
+          <span class="horaire-day">Lundi</span><span class="horaire-hours" style="color:var(--texte-doux);">Fermé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap">
+    <p class="page-eyebrow reveal" style="margin-bottom:12px;">Message</p>
+    <h2 class="section-title reveal">Écrivez-<em>nous</em></h2>
+    <div class="blue-line reveal" style="margin-left:0;"></div>
+    <form id="contactForm" style="margin-top:40px;">
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="form-group reveal">
+          <label class="form-label">Nom complet</label>
+          <input class="form-input" type="text" placeholder="Thomas Mével" required>
+        </div>
+        <div class="form-group reveal">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="thomas@email.com" required>
+        </div>
+        <div class="form-group reveal">
+          <label class="form-label">Sujet</label>
+          <select class="form-select form-input">
+            <option>Réservation de groupe</option>
+            <option>Privatisation</option>
+            <option>Presse / Médias</option>
+            <option>Partenariat</option>
+            <option>Recrutement</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group reveal">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" style="min-height:140px;" placeholder="Votre message..." required></textarea>
+        </div>
+        <button type="submit" class="btn-blue reveal" style="width:100%;text-align:center;padding:20px;">Envoyer le message</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div><div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div><p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p></div>
+    <div class="footer-links"><h4>Pages</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Carte</a></li><li><a href="reservation.html">Réservation</a></li></ul></div>
+    <div class="footer-links"><h4>Infos</h4><ul><li><a href="#">Mentions légales</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Le Casier · Tous droits réservés</p><div class="footer-social"><a href="#">Instagram</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+</body>
+</html>

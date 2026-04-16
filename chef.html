@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Chef — Le Casier</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.chef-hero { min-height: 60vh; background: var(--nuit); display: flex; align-items: center; padding: 160px 80px 80px; gap: 100px; }
+.chef-visual { width: 380px; height: 480px; flex-shrink: 0; background: linear-gradient(135deg, var(--profond), var(--brume)); display: flex; align-items: center; justify-content: center; font-size: 120px; border: 1px solid rgba(46,123,166,0.2); position: relative; overflow: hidden; }
+.chef-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, var(--nuit)); }
+.chef-intro { flex: 1; }
+.chef-quote { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: #fff; line-height: 1.4; font-style: italic; margin: 32px 0; }
+.chef-quote::before { content: '«\00a0'; color: var(--bleu-clair); }
+.chef-quote::after  { content: '\00a0»'; color: var(--bleu-clair); }
+.chef-stat-row { display: flex; gap: 40px; margin-top: 40px; }
+.chef-stat-item { text-align: center; }
+.chef-stat-num { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:#fff; }
+.chef-stat-label { font-size:9px; letter-spacing:3px; color:var(--bleu-clair); text-transform:uppercase; margin-top:4px; }
+.timeline { padding: 80px; background: var(--noir); }
+.timeline-title { font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; color:#fff; margin-bottom:64px; }
+.timeline-title em { color:var(--bleu-pale); font-style:italic; }
+.timeline-items { display:flex; flex-direction:column; gap:0; }
+.timeline-item { display:grid; grid-template-columns: 120px 1px 1fr; gap: 0 40px; padding:32px 0; border-bottom:1px solid rgba(46,123,166,0.08); }
+.timeline-year { font-family:'Cormorant Garamond',serif; font-size:24px; color:var(--bleu-clair); align-self:start; padding-top:4px; }
+.timeline-dot { width:1px; background: rgba(46,123,166,0.3); position:relative; }
+.timeline-dot::before { content:''; position:absolute; top:8px; left:50%; transform:translateX(-50%); width:8px; height:8px; background:var(--bleu); border-radius:50%; }
+.timeline-content h3 { font-family:'Cormorant Garamond',serif; font-size:24px; color:#fff; margin-bottom:8px; }
+.timeline-content p { font-size:12px; color:var(--texte-doux); line-height:1.9; font-weight:300; }
+@media(max-width:768px) { .chef-hero { flex-direction:column; padding:120px 24px 60px; gap:40px; } .chef-visual { width:100%; height:280px; } .timeline { padding:60px 24px; } .timeline-item { grid-template-columns: 80px 1px 1fr; } }
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html">Carte</a></li>
+    <li><a href="chef.html" class="active">Le Chef</a></li>
+    <li><a href="evenements.html">Événements</a></li>
+  </ul>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-name">Le Casier</div>
+    <div class="nav-logo-sub">Poissonnerie · Restaurant · Paris</div>
+  </a>
+  <ul class="nav-links" style="justify-content:flex-end;">
+    <li><a href="presse.html">Presse</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="reservation.html" class="nav-reserve">Réserver</a></li>
+  </ul>
+</nav>
+
+<div class="chef-hero">
+  <div class="chef-visual reveal"><span style="position:relative;z-index:2;">👨‍🍳</span></div>
+  <div class="chef-intro">
+    <p class="page-eyebrow reveal">Le Chef</p>
+    <h1 class="page-title reveal">Thomas <em>Mével</em></h1>
+    <div class="blue-line reveal"></div>
+    <p class="section-intro reveal">Breton de Douarnenez, Thomas Mével a grandi en regardant son père rentrer de la mer avant l'aube. Vingt ans plus tard, il cuisine ce qu'il a toujours connu : la vérité du produit, la violence douce de l'océan.</p>
+    <p class="chef-quote reveal">La mer ne ment pas. Mon rôle est de ne pas lui mentir non plus.</p>
+    <div class="chef-stat-row">
+      <div class="chef-stat-item reveal"><div class="chef-stat-num">18</div><p class="chef-stat-label">Ans de cuisine</p></div>
+      <div class="chef-stat-item reveal"><div class="chef-stat-num">4</div><p class="chef-stat-label">Étoiles cumulées</p></div>
+      <div class="chef-stat-item reveal"><div class="chef-stat-num">3</div><p class="chef-stat-label">Pays travaillés</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline">
+  <h2 class="timeline-title reveal">Un parcours <em>de mer</em></h2>
+  <div class="timeline-items">
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2006</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Lycée hôtelier de Dinard</h3>
+        <p>Formation classique en Bretagne. Apprentissage de la mise en place, des fonds de sauce, de la rigueur de brigade. Mention très bien au CAP cuisiner.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2008</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>La Mère Brazier — Lyon ★★</h3>
+        <p>Commis poissonnier chez Mathieu Viannay. Premier choc : comprendre que la cuisson d'un poisson noble se joue à la seconde. Deux ans de discipline absolue.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2011</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Nobu London — Londres ★</h3>
+        <p>Ouverture à la cuisine japonaise, au respect absolu du cru, à la découpe du thon. Révélation : la mer peut se manger sans être cuite.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2014</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Le Bernardin — New York ★★★</h3>
+        <p>Chef de partie sous Éric Ripert. La référence mondiale de la cuisine de la mer. Thomas y apprend la perfection du geste, l'obsession du produit, et le respect du silence en brigade.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2018</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Retour en France — Paris</h3>
+        <p>Chef exécutif dans un établissement gastronomique du 6e arrondissement. Première étoile obtenue en moins de 18 mois. Le Tout-Paris s'en souvient.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2024</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Le Casier — Son restaurant</h3>
+        <p>L'aboutissement : son propre lieu, ses règles, son rythme. Une poissonnerie-restaurant où tout arrive vivant ou fraîchement sorti de l'eau. La mer, enfin sans intermédiaire.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" style="background:var(--nuit);text-align:center;">
+  <p class="section-eyebrow reveal">Sa table</p>
+  <h2 class="section-title reveal">Venez le <em>rencontrer</em></h2>
+  <div class="blue-line reveal"></div>
+  <p class="section-intro reveal" style="margin:0 auto 48px;">Thomas est en salle chaque soir du mardi au samedi. La table du chef — 4 couverts face aux cuisines ouvertes — est disponible sur demande.</p>
+  <a href="reservation.html" class="btn-blue reveal">Réserver la table du chef</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><div class="nav-logo-name" style="font-size:20px;letter-spacing:6px;">Le Casier</div><div class="nav-logo-sub" style="margin-top:4px;">Poissonnerie · Restaurant · Paris</div><p>18 Rue des Grands Augustins<br>75006 Paris, France<br>+33 1 43 00 00 00</p></div>
+    <div class="footer-links"><h4>Pages</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="menu.html">Carte</a></li><li><a href="reservation.html">Réservation</a></li></ul></div>
+    <div class="footer-links"><h4>Infos</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Recrutement</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 Le Casier · Tous droits réservés</p><div class="footer-social"><a href="#">Instagram</a><a href="#">TripAdvisor</a></div></div>
+</footer>
+<div class="notif" id="notif"><div class="notif-title"></div><div class="notif-text"></div></div>
+<script src="main.js"></script>
+</body>
+</html>
