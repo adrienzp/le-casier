@@ -54,14 +54,14 @@
       <span class="contact-icon">📍</span>
       <div>
         <p class="contact-label">Adresse</p>
-        <p class="contact-value">18 Rue des Grands Augustins<br>75006 Paris, France<br>Métro Odéon — Lignes 4 & 10</p>
+        <p class="contact-value"><span data-bf="adresse">18 Rue des Grands Augustins, 75006 Paris</span><br>Métro Odéon — Lignes 4 & 10</p>
       </div>
     </div>
     <div class="contact-item reveal">
       <span class="contact-icon">📞</span>
       <div>
         <p class="contact-label">Téléphone</p>
-        <p class="contact-value"><a href="tel:+33143000000">+33 1 43 00 00 00</a></p>
+        <p class="contact-value"><a href="tel:+33143000000" data-bf="telephone">+33 1 43 00 00 00</a></p>
       </div>
     </div>
     <div class="contact-item reveal">
@@ -73,13 +73,14 @@
     </div>
     <div class="contact-item reveal">
       <span class="contact-icon">🕐</span>
-      <div>
+      <div style="flex:1;">
         <p class="contact-label">Horaires d'ouverture</p>
-        <div class="horaires-grid">
-          <span class="horaire-day">Mardi – Vendredi</span><span class="horaire-hours">12h – 14h30 · 19h – 22h30</span>
-          <span class="horaire-day">Samedi</span><span class="horaire-hours">12h – 15h00 · 19h – 23h00</span>
-          <span class="horaire-day">Dimanche</span><span class="horaire-hours">12h – 15h00</span>
-          <span class="horaire-day">Lundi</span><span class="horaire-hours" style="color:var(--texte-doux);">Fermé</span>
+        <div data-bf="horaires">
+          <!-- Chargé dynamiquement depuis BurstFlow -->
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(46,123,166,0.08);font-size:13px;"><span style="color:var(--texte-doux)">Mardi – Vendredi</span><span>12h – 14h30 · 19h – 22h30</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(46,123,166,0.08);font-size:13px;"><span style="color:var(--texte-doux)">Samedi</span><span>12h – 15h00 · 19h – 23h00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(46,123,166,0.08);font-size:13px;"><span style="color:var(--texte-doux)">Dimanche</span><span>12h – 15h00</span></div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;"><span style="color:var(--texte-doux)">Lundi</span><span style="color:var(--texte-doux)">Fermé</span></div>
         </div>
       </div>
     </div>

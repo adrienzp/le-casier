@@ -3,6 +3,74 @@
    ============================================================ */
 
 // ─────────────────────────────────────────
+// 0. CHARGEMENT DONNÉES DEPUIS BURSTFLOW
+// ─────────────────────────────────────────
+const RESTAURANT_SLUG = 'le-casier';
+const BURSTFLOW_API   = 'https://burstflow.fr/api/public/restaurant/' + RESTAURANT_SLUG;
+
+const JOURS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+
+function formatHoraire(schedule) {
+  if (!schedule?.open) return 'Fermé';
+  const parts = [];
+  if (schedule.lunch)  parts.push(schedule.lunch.start  + ' – ' + schedule.lunch.end);
+  if (schedule.dinner) parts.push(schedule.dinner.start + ' – ' + schedule.dinner.end);
+  return parts.length ? parts.join(' · ') : 'Ouvert';
+}
+
+async function loadRestaurantData() {
+  try {
+    const res  = await fetch(BURSTFLOW_API);
+    if (!res.ok) return;
+    const data = await res.json();
+
+    // Nom
+    if (data.nom) {
+      document.querySelectorAll('[data-bf="nom"]').forEach(el => el.textContent = data.nom);
+    }
+    // Téléphone
+    if (data.telephone) {
+      document.querySelectorAll('[data-bf="telephone"]').forEach(el => {
+        el.textContent = data.telephone;
+        if (el.tagName === 'A') el.href = 'tel:' + data.telephone.replace(/\s/g,'');
+      });
+    }
+    // Adresse
+    if (data.adresse) {
+      document.querySelectorAll('[data-bf="adresse"]').forEach(el => el.textContent = data.adresse);
+    }
+    // Email
+    if (data.email) {
+      document.querySelectorAll('[data-bf="email"]').forEach(el => {
+        el.textContent = data.email;
+        if (el.tagName === 'A') el.href = 'mailto:' + data.email;
+      });
+    }
+    // Horaires
+    if (data.horaires) {
+      document.querySelectorAll('[data-bf="horaires"]').forEach(container => {
+        container.innerHTML = '';
+        [1,2,3,4,5,6,0].forEach(dayIndex => {
+          const sched = data.horaires[String(dayIndex)];
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(46,123,166,0.08);font-size:13px;';
+          row.innerHTML = `<span style="color:var(--texte-doux)">${JOURS[dayIndex]}</span><span style="color:${sched?.open === false ? 'var(--texte-doux)' : '#fff'}">${formatHoraire(sched)}</span>`;
+          container.appendChild(row);
+        });
+      });
+    }
+    // Couleur principale
+    if (data.couleur) {
+      document.documentElement.style.setProperty('--bleu', data.couleur);
+    }
+  } catch (e) {
+    // Silencieux — le site affiche ses valeurs par défaut
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadRestaurantData);
+
+// ─────────────────────────────────────────
 // 1. CURSEUR + TRAÎNÉE MARINE
 // ─────────────────────────────────────────
 const cursor = document.getElementById('cursor');
