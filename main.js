@@ -130,10 +130,41 @@ window.showNotif = showNotif;
 // ─────────────────────────────────────────
 const resaForm = document.getElementById('resaForm');
 if (resaForm) {
-  resaForm.addEventListener('submit', e => {
+  resaForm.addEventListener('submit', async e => {
     e.preventDefault();
-    showNotif('Demande envoyée', 'Nous vous confirmons votre réservation sous 24h.');
-    resaForm.reset();
+    const slug = resaForm.dataset.restaurantSlug;
+    const inputs = resaForm.querySelectorAll('input, select, textarea');
+    const fields = {};
+    inputs.forEach(el => { if (el.name) fields[el.name] = el.value; });
+
+    // Récupère les champs par position (le form n'a pas de name= sur les inputs)
+    const allInputs = [...resaForm.querySelectorAll('input:not([type=hidden]), select, textarea')];
+    const data = {
+      slug,
+      nom:       (allInputs[0]?.value || '') + ' ' + (allInputs[1]?.value || ''),
+      email:     allInputs[2]?.value || '',
+      telephone: allInputs[3]?.value || '',
+      date:      allInputs[4]?.value || '',
+      heure:     allInputs[5]?.value === 'Déjeuner (12h00 – 14h30)' ? '12:00' : '19:00',
+      personnes: allInputs[6]?.value?.replace(/\D/g,'') || '2',
+      message:   allInputs[8]?.value || '',
+    };
+
+    try {
+      const res = await fetch('https://burstflow.fr/api/reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        showNotif('Réservation confirmée', 'Un email de confirmation vous a été envoyé.');
+        resaForm.reset();
+      } else {
+        showNotif('Erreur', 'Veuillez nous contacter directement.');
+      }
+    } catch {
+      showNotif('Erreur réseau', 'Veuillez réessayer ou nous appeler.');
+    }
   });
 }
 
